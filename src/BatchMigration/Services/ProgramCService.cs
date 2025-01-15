@@ -1,14 +1,13 @@
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace BatchMigration
 {
     public static class ProgramCService
     {
-        public static void Run(string inputFilePath)
+        public static void Run(List<DepartmentSalary> departmentSalaries)
         {
-            var departmentSalaries = CsvHelper.ReadCsv<DepartmentSalary>(inputFilePath);
-
             decimal totalSalary = departmentSalaries.Sum(d => d.TotalSalary);
             Console.WriteLine("Total Salary: " + totalSalary);
         }

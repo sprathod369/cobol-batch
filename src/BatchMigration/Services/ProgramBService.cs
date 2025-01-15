@@ -1,15 +1,15 @@
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace BatchMigration
 {
     public static class ProgramBService
     {
-        public static void Run(string inputFilePath, string outputFilePath)
+        public static List<DepartmentSalary> Run(List<DepartmentSalary> departmentSalaries)
         {
-            var departmentSalaries = CsvHelper.ReadCsv<DepartmentSalary>(inputFilePath);
-            CsvHelper.WriteCsv(departmentSalaries, outputFilePath);
-            Console.WriteLine("Program B completed. Output written to " + outputFilePath);
+            Console.WriteLine("Program B completed.");
+            return departmentSalaries; // Simply pass the data to the next stage
         }
     }
 }

@@ -7,24 +7,22 @@ namespace BatchMigration
         public static void Main(string[] args)
         {
             Console.WriteLine("Batch Process Starting...");
-
+ 
             string inputFilePath = "data/EmployeeData.csv";
-            string outputFilePathA = "data/deptSalaryOutput.csv";
-            string outputFilePathB = "data/salaryReport.csv";
 
             try
             {
                 // Step 1: Program A
                 Console.WriteLine("Executing Program A...");
-                ProgramAService.Run(inputFilePath, outputFilePathA);
+                var departmentSalaries = ProgramAService.Run(inputFilePath);
 
                 // Step 2: Program B
                 Console.WriteLine("Executing Program B...");
-                ProgramBService.Run(outputFilePathA, outputFilePathB);
+                var processedSalaries = ProgramBService.Run(departmentSalaries);
 
                 // Step 3: Program C
                 Console.WriteLine("Executing Program C...");
-                ProgramCService.Run(outputFilePathB);
+                ProgramCService.Run(processedSalaries);
             }
             catch (Exception ex)
             {

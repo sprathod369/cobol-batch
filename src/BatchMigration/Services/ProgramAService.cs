@@ -1,11 +1,12 @@
 using System;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace BatchMigration
 {
     public static class ProgramAService
     {
-        public static void Run(string inputFilePath, string outputFilePath)
+        public static List<DepartmentSalary> Run(string inputFilePath)
         {
             var employees = CsvHelper.ReadCsv<Employee>(inputFilePath);
 
@@ -17,8 +18,8 @@ namespace BatchMigration
                     TotalSalary = g.Sum(e => e.Salary)
                 }).ToList();
 
-            CsvHelper.WriteCsv(departmentSalaries, outputFilePath);
-            Console.WriteLine("Program A completed. Output written to " + outputFilePath);
+            Console.WriteLine("Program A completed.");
+            return departmentSalaries; // Return the result in-memory
         }
     }
 }
