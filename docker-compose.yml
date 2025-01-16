@@ -1,0 +1,12 @@
+version: '3.8' 
+services: 
+  salary-processing-app: 
+    build: 
+      context: . 
+      dockerfile: Dockerfile 
+    ports: 
+      - "8080:80" 
+    volumes: 
+      - ./EmployeeData.csv:/app/EmployeeData.csv 
+    environment: 
+      - ASPNETCORE_ENVIRONMENT=Production
